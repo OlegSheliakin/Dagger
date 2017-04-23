@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.mapping.ItemMapper;
+import home.oleg.dagger.mapping.Mapper;
 import home.oleg.dagger.repo.ItemRepository;
+import home.oleg.dagger.repo.Repository;
 import home.oleg.dagger.view_model.ItemViewModel;
 
 /**
@@ -15,11 +18,10 @@ import home.oleg.dagger.view_model.ItemViewModel;
 
 public class MainUseCase implements UseCase<List<ItemViewModel>>{
 
-    private final ItemRepository repository;
-    private final ItemMapper mapper;
+    private final Repository<Item> repository;
+    private final Mapper<Item, ItemViewModel> mapper;
 
-    @Inject
-    public MainUseCase(ItemRepository repository, ItemMapper mapper){
+    public MainUseCase(Repository<Item> repository, Mapper<Item, ItemViewModel> mapper){
         this.repository = repository;
         this.mapper = mapper;
     }

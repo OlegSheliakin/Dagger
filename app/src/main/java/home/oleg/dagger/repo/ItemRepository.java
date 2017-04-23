@@ -13,9 +13,6 @@ import home.oleg.dagger.entity.Item;
 
 public class ItemRepository implements Repository<Item> {
 
-    @Inject
-    public ItemRepository(){}
-
     @Override
     public List<Item> getAll() {
         return Arrays.asList(new Item("1", "first item"), new Item("2", "second item"));

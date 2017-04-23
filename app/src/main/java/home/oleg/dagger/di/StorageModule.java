@@ -1,9 +1,6 @@
 package home.oleg.dagger.di;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,19 +16,18 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 @Module
-public class ApplictaionModule {
+public class StorageModule {
 
-    private final Context context;
-
-    public ApplictaionModule(Context context) {
-        this.context = context;
+    @NonNull
+    @Provides
+    public Repository<Item> provideRepository() {
+        return new ItemRepository();
     }
 
     @NonNull
     @Provides
-    @Singleton
-    public Context provideContext() {
-        return context;
+    public Mapper<Item, ItemViewModel> provideMapper() {
+        return new ItemMapper();
     }
 
 }

@@ -16,11 +16,10 @@ import home.oleg.dagger.view_model.ItemViewModel;
 
 public class MainPresenter implements Presenter<MainView>, UseCaseObserver<List<ItemViewModel>> {
 
-    private final MainUseCase useCase;
+    private final UseCase<List<ItemViewModel>> useCase;
     private MainView view;
 
-    @Inject
-    public MainPresenter(MainUseCase useCase) {
+    public MainPresenter(UseCase<List<ItemViewModel>> useCase) {
         this.useCase = useCase;
     }
 

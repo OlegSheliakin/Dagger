@@ -17,7 +17,7 @@ import home.oleg.dagger.view_model.ItemViewModel;
 
 public class MainActivity extends AppCompatActivity implements MainView {
 
-    @Inject MainPresenter presenter;
+    @Inject Presenter<MainView> presenter;
 
     @BindView(R.id.tv_items) TextView tvItems;
 
@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        DaggerApplication.getComponent();
+        DaggerApplication.getComponent().inject(this);
+        presenter.attachView(this);
     }
 
     @Override

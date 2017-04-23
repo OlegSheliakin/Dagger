@@ -11,9 +11,6 @@ import home.oleg.dagger.view_model.ItemViewModel;
 
 public class ItemMapper implements Mapper<Item, ItemViewModel> {
 
-    @Inject
-    public ItemMapper(){}
-
     @Override
     public ItemViewModel map(Item item) {
         return new ItemViewModel(item.getName(), item.getDescription());
