@@ -1,10 +1,13 @@
 package home.oleg.dagger.repo;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import javax.inject.Inject;
-
+import home.oleg.dagger.datastore.Store;
+import home.oleg.dagger.di.Action;
+import home.oleg.dagger.di.StoreType;
 import home.oleg.dagger.entity.Item;
 
 /**
@@ -13,8 +16,27 @@ import home.oleg.dagger.entity.Item;
 
 public class ItemRepository implements Repository<Item> {
 
+    private final Map<StoreType, Store<List<Item>>> stores;
+
+    public ItemRepository(Map<StoreType, Store<List<Item>>> stores) {
+        this.stores = stores;
+    }
+
     @Override
     public List<Item> getAll() {
-        return Arrays.asList(new Item("1", "first item"), new Item("2", "second item"));
+        List<Item> items = new ArrayList<>();
+        items.addAll(stores.get(StoreType.CACHED).get());
+        items.addAll(stores.get(StoreType.CLOUD).get());
+        return items;
+    }
+
+    @Override
+    public Item get(String name) {
+        return null;
+    }
+
+    @Override
+    public void remove(Item item) {
+
     }
 }

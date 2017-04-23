@@ -2,10 +2,7 @@ package home.oleg.dagger.presenter;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
-import home.oleg.dagger.MainView;
-import home.oleg.dagger.interactor.MainUseCase;
+import home.oleg.dagger.view.MainView;
 import home.oleg.dagger.interactor.UseCase;
 import home.oleg.dagger.interactor.UseCaseObserver;
 import home.oleg.dagger.view_model.ItemViewModel;
@@ -29,7 +26,7 @@ public class MainPresenter implements Presenter<MainView>, UseCaseObserver<List<
     }
 
     @Override
-    public void created() {
+    public void fetchItems() {
         useCase.execute(this);
     }
 

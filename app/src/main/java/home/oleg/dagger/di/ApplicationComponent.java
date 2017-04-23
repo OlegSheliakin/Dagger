@@ -9,7 +9,8 @@ import home.oleg.dagger.MainActivity;
  * Created by Oleg on 22.04.2017.
  */
 @Singleton
-@Component(modules = {ApplictaionModule.class, StorageModule.class, MainActivityModule.class})
+@Component(modules = {ApplictaionModule.class, StorageModule.class,
+        MainActivityModule.class, ActionModule.class})
 public interface ApplicationComponent {
     void inject(MainActivity mainActivity);
 }

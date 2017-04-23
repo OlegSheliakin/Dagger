@@ -6,5 +6,5 @@ package home.oleg.dagger.presenter;
 
 public interface Presenter<VIEW> {
     void attachView(VIEW view);
-    void created();
+    void fetchItems();
 }

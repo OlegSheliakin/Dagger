@@ -58,4 +58,8 @@ public class Item {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public boolean isExpired() {
+        return true;
+    }
 }
