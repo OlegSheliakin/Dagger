@@ -1,6 +1,7 @@
 package home.oleg.dagger.di;
 
 import dagger.Component;
+import dagger.Subcomponent;
 import home.oleg.dagger.MainActivity;
 
 /**

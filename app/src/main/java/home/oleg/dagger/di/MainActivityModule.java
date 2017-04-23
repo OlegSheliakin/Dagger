@@ -28,12 +28,14 @@ public class MainActivityModule {
 
     @NonNull
     @Provides
+    @PerActivity
     public Presenter<MainView> providePresenter(UseCase<List<ItemViewModel>> useCase) {
         return new MainPresenter(useCase);
     }
 
     @NonNull
     @Provides
+    @PerActivity
     public UseCase<List<ItemViewModel>> provideUseCase(Repository<Item> repository, Mapper<Item,
             ItemViewModel> mapper, Set<Action<List<Item>>> actions) {
         return new MainUseCase(repository, mapper, actions);
