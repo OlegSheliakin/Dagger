@@ -9,6 +9,7 @@ import java.util.List;
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoSet;
+import home.oleg.dagger.Aaa;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.repo.Repository;
 
@@ -21,7 +22,7 @@ public class ActionModule {
     @NonNull
     @Provides
     @IntoSet
-    public Action<List<Item>> provideSortAction() {
+    public Action<List<Item>> provideSortAction(Aaa aaa) {
         return items -> Collections.sort(items, (i1, i2) -> i1.getName().compareTo(i2.getName()));
     }
 
@@ -43,5 +44,10 @@ public class ActionModule {
                 }
             }
         };
+    }
+
+    @Provides
+    public Aaa provideAaa() {
+        return new Aaa();
     }
 }

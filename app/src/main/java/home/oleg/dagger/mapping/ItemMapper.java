@@ -1,7 +1,5 @@
 package home.oleg.dagger.mapping;
 
-import javax.inject.Inject;
-
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.view_model.ItemViewModel;
 
