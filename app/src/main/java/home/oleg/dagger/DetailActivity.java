@@ -3,32 +3,41 @@ package home.oleg.dagger;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+
 import javax.inject.Inject;
 
 import home.oleg.dagger.di.components.DaggerDetailComponent;
+import home.oleg.dagger.di.modules.ApplictaionModule;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
 public class DetailActivity extends AppCompatActivity {
 
-    @Inject Single<HeavyExternalLibrary> heavyExternalLibrarySingle;
+    private HeavyExternalLibrary heavyExternalLibrary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        DaggerDetailComponent.builder().build().inject(this);
-        heavyExternalLibrarySingle.subscribe(new Consumer<HeavyExternalLibrary>() {
+        ListenableFuture<HeavyExternalLibrary> heavyExternalLibraryListenableFuture = DaggerDetailComponent.builder()
+                .build()
+                .heavyExternalLibraryListenableFuture();
+        Futures.addCallback(heavyExternalLibraryListenableFuture, new FutureCallback<HeavyExternalLibrary>() {
             @Override
-            public void accept(@NonNull HeavyExternalLibrary heavyExternalLibrary) throws Exception {
-                heavyExternalLibrary.callMethod();
+            public void onSuccess(HeavyExternalLibrary result) {
+                DetailActivity.this.heavyExternalLibrary = result;
+                result.callMethod();
             }
-        }, new Consumer<Throwable>() {
+
             @Override
-            public void accept(@NonNull Throwable throwable) throws Exception {
-                throwable.printStackTrace();
+            public void onFailure(Throwable t) {
+                t.printStackTrace();
             }
         });
+
     }
 }

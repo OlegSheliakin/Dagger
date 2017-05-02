@@ -19,19 +19,6 @@ import dagger.producers.Production;
 @Module
 public class ApplictaionModule {
 
-    private final Context context;
-
-    public ApplictaionModule(Context context) {
-        this.context = context;
-    }
-
-    @NonNull
-    @Provides
-    @Singleton
-    public Context provideContext() {
-        return context;
-    }
-
     @Provides
     @Production
     public Executor executor() {
