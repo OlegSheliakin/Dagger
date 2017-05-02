@@ -1,4 +1,4 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.scopes;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;

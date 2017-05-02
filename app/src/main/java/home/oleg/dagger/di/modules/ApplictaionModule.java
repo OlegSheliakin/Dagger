@@ -1,4 +1,4 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.modules;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

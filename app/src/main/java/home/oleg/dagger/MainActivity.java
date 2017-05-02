@@ -4,24 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.presenter.Presenter;
 import home.oleg.dagger.view.MainView;
 import home.oleg.dagger.view_model.ItemViewModel;
@@ -29,7 +18,6 @@ import home.oleg.dagger.view_model.ItemViewModel;
 public class MainActivity extends AppCompatActivity implements MainView {
 
     @Inject Presenter<MainView> presenter;
-    @Inject Aaa aaa;
 
     @BindView(R.id.tv_items) TextView tvItems;
 
@@ -38,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        DaggerApplication.getComponent().mainActivityComponent().inject(this);
     }
 
     @Override

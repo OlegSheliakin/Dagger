@@ -1,9 +1,10 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.components;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import home.oleg.dagger.DetailActivity;
+import home.oleg.dagger.di.modules.ApplictaionModule;
+import home.oleg.dagger.di.modules.StorageModule;
 
 /**
  * Created by Oleg on 22.04.2017.

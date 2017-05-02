@@ -3,11 +3,9 @@ package home.oleg.dagger.repo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import home.oleg.dagger.datastore.Store;
-import home.oleg.dagger.di.Action;
-import home.oleg.dagger.di.StoreType;
+import home.oleg.dagger.datastore.StoreType;
 import home.oleg.dagger.entity.Item;
 
 /**

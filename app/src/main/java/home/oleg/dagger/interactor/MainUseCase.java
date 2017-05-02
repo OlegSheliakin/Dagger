@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import home.oleg.dagger.di.Action;
+import home.oleg.dagger.Action;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.mapping.Mapper;
 import home.oleg.dagger.repo.Repository;

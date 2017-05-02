@@ -1,4 +1,4 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.modules;
 
 import android.support.annotation.NonNull;
 
@@ -7,7 +7,8 @@ import java.util.Set;
 
 import dagger.Module;
 import dagger.Provides;
-import dagger.producers.ProducerModule;
+import home.oleg.dagger.Action;
+import home.oleg.dagger.di.scopes.PerActivity;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.interactor.MainUseCase;
 import home.oleg.dagger.interactor.UseCase;

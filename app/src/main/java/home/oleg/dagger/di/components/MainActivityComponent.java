@@ -1,12 +1,9 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.components;
 
-import com.google.common.util.concurrent.ListenableFuture;
-
-import dagger.Component;
 import dagger.Subcomponent;
-import dagger.producers.ProductionSubcomponent;
 import home.oleg.dagger.MainActivity;
-import home.oleg.dagger.entity.Item;
+import home.oleg.dagger.di.modules.MainActivityModule;
+import home.oleg.dagger.di.scopes.PerActivity;
 
 /**
  * Created by Oleg on 22.04.2017.

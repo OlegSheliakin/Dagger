@@ -1,22 +1,20 @@
-package home.oleg.dagger.di;
+package home.oleg.dagger.di.modules;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoMap;
-import dagger.multibindings.IntoSet;
-import dagger.multibindings.StringKey;
 import home.oleg.dagger.datastore.CachedStore;
 import home.oleg.dagger.datastore.CloudStore;
 import home.oleg.dagger.datastore.Store;
+import home.oleg.dagger.datastore.StoreKey;
+import home.oleg.dagger.datastore.StoreType;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.mapping.ItemMapper;
 import home.oleg.dagger.mapping.Mapper;

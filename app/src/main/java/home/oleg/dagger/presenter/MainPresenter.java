@@ -2,6 +2,8 @@ package home.oleg.dagger.presenter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import home.oleg.dagger.view.MainView;
 import home.oleg.dagger.interactor.UseCase;
 import home.oleg.dagger.interactor.UseCaseObserver;

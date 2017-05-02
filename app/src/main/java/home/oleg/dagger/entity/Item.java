@@ -1,12 +1,14 @@
 package home.oleg.dagger.entity;
 
+import android.support.annotation.NonNull;
+
 import java.util.Date;
 
 /**
  * Created by Oleg on 22.04.2017.
  */
 
-public class Item {
+public class Item implements ItemInterface{
 
     private Long id;
     private String name;
@@ -61,5 +63,18 @@ public class Item {
 
     public boolean isExpired() {
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull ItemInterface o) {
+        return getName().compareTo(o.getName());
     }
 }

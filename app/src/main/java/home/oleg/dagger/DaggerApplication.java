@@ -2,9 +2,10 @@ package home.oleg.dagger;
 
 import android.app.Application;
 
-import home.oleg.dagger.di.ApplicationComponent;
-import home.oleg.dagger.di.ApplictaionModule;
-import home.oleg.dagger.di.DaggerApplicationComponent;
+import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
+
+import home.oleg.dagger.di.components.ApplicationComponent;
+import home.oleg.dagger.di.components.DaggerApplicationComponent;
 
 /**
  * Created by Oleg on 22.04.2017.
@@ -17,8 +18,11 @@ public class DaggerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        component = DaggerApplicationComponent.builder()
-                .applictaionModule(new ApplictaionModule(this)).build();
+        if (BuildConfig.DEBUG) {
+            AndroidDevMetrics.initWith(this);
+        }
+
+        component = DaggerApplicationComponent.create();
     }
 
     public static ApplicationComponent getComponent() {
