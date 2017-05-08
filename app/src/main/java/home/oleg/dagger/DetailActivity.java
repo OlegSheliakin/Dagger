@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import javax.inject.Inject;
 
 import home.oleg.dagger.datastore.HeavyExternalLibrary;
+import home.oleg.dagger.di.BindableActivity;
 import home.oleg.dagger.di.components.DetailComponent;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements BindableActivity {
 
     @Inject Single<HeavyExternalLibrary> heavyExternalLibrarySingle;
 
@@ -20,10 +21,9 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ((DetailComponent) DaggerApplication.getApp(this)
+        DaggerApplication.getApp(this)
                 .getComponentsHolder()
-                .getActivityComponent(getClass()))
-                .inject(this);
+                .getActivityComponent(this, DetailComponent.class).inject(this);
 
         heavyExternalLibrarySingle.subscribe(new Consumer<HeavyExternalLibrary>() {
             @Override

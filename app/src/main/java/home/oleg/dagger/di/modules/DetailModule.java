@@ -6,7 +6,7 @@ import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
 import home.oleg.dagger.datastore.HeavyExternalLibrary;
-import home.oleg.dagger.di.ActivityModule;
+import home.oleg.dagger.di.BindableActivity;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by Oleg on 01.05.2017.
  */
 @Module
-public class DetailModule implements ActivityModule {
+public class DetailModule implements BindableActivity {
 
     @Provides
     public HeavyExternalLibrary provideHeavyLibrary() {

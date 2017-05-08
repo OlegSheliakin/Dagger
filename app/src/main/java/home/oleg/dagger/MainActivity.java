@@ -1,30 +1,25 @@
 package home.oleg.dagger;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import home.oleg.dagger.di.ActivityComponent;
+import home.oleg.dagger.di.BindableActivity;
 import home.oleg.dagger.di.components.MainActivityComponent;
 import home.oleg.dagger.presenter.Presenter;
 import home.oleg.dagger.view.MainView;
 import home.oleg.dagger.view_model.ItemViewModel;
 
-import static android.R.attr.start;
-import static android.R.attr.y;
-
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity implements MainView, BindableActivity {
 
     @Inject Presenter<MainView> presenter;
     @Inject Drawable appIcon;
@@ -36,10 +31,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        ((MainActivityComponent) DaggerApplication.getApp(this)
-                .getComponentsHolder()
-                .getActivityComponent(getClass()))
-                .inject(this);
+
+        DaggerApplication.getApp(this).getComponentsHolder()
+                .getActivityComponent(this, MainActivityComponent.class).inject(this);
     }
 
     @Override

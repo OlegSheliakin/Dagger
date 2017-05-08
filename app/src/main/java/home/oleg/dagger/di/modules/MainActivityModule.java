@@ -12,7 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 import home.oleg.dagger.datastore.Action;
 import home.oleg.dagger.R;
-import home.oleg.dagger.di.ActivityModule;
+import home.oleg.dagger.di.BindableActivity;
 import home.oleg.dagger.di.scopes.PerActivity;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.interactor.MainUseCase;
@@ -29,7 +29,7 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 @Module(includes = ActionModule.class)
-public class MainActivityModule implements ActivityModule {
+public class MainActivityModule implements BindableActivity {
 
     @NonNull
     @Provides

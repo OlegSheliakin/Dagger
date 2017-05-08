@@ -13,9 +13,8 @@ import home.oleg.dagger.di.scopes.PerActivity;
 @PerActivity
 @Subcomponent(modules = MainActivityModule.class)
 public interface MainActivityComponent extends ActivityComponent<MainActivity> {
-    void inject (MainActivity activity);
 
     @Subcomponent.Builder
-    interface Builder extends ActivityComponentBuilder<MainActivityComponent, MainActivityModule> {
+    interface Builder extends ActivityComponentBuilder<MainActivityComponent> {
     }
 }

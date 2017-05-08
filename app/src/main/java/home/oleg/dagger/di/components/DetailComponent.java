@@ -17,6 +17,6 @@ import home.oleg.dagger.di.scopes.PerActivity;
 public interface DetailComponent extends ActivityComponent<DetailActivity>{
 
     @Subcomponent.Builder
-    interface Builder extends ActivityComponentBuilder<DetailComponent, DetailModule>{
+    interface Builder extends ActivityComponentBuilder<DetailComponent>{
     }
 }
