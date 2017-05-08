@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
 
         DaggerApplication.getApp(this).getComponentsHolder()
                 .getActivityComponent(this, MainActivityComponent.class).inject(this);
+        System.out.println(DaggerApplication.getApp(this).getComponentsHolder().getAll().toString());
     }
 
     @Override
@@ -55,4 +56,11 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            DaggerApplication.getApp(this).getComponentsHolder().releaseActivityComponent(this);
+        }
+    }
 }

@@ -42,7 +42,7 @@ public class ComponentsHolder {
         return appComponent;
     }
 
-    public <T extends BindableActivity, C extends ActivityComponent> C getActivityComponent(@NonNull T activity, @NonNull Class<C> cls) {
+    public <T extends BindableActivity, C extends ActivityComponent> C getActivityComponent(@NonNull T activity, @NonNull Class<C> type) {
         ActivityComponent component = components.get(activity.getClass());
         if (component == null) {
             ActivityComponentBuilder builder = builders.get(activity.getClass()).get();
@@ -50,16 +50,18 @@ public class ComponentsHolder {
             component = builder.build();
             components.put(activity.getClass(), component);
         }
-        return as(cls, component);
+        return as(type, component);
     }
 
     private <T extends ActivityComponent> T as( Class<T> cls, ActivityComponent component) {
         return cls.cast(component);
     }
 
-    public void releaseActivityComponent(Class<?> cls) {
-        components.put(cls, null);
-
+    public void releaseActivityComponent(BindableActivity cls) {
+        components.put(cls.getClass(), null);
     }
 
+    public Map<Class<?>, ActivityComponent> getAll() {
+        return components;
+    }
 }

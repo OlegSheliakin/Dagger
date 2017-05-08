@@ -24,6 +24,7 @@ public class DetailActivity extends AppCompatActivity implements BindableActivit
         DaggerApplication.getApp(this)
                 .getComponentsHolder()
                 .getActivityComponent(this, DetailComponent.class).inject(this);
+        System.out.println(DaggerApplication.getApp(this).getComponentsHolder().getAll().toString());
 
         heavyExternalLibrarySingle.subscribe(new Consumer<HeavyExternalLibrary>() {
             @Override
@@ -36,5 +37,13 @@ public class DetailActivity extends AppCompatActivity implements BindableActivit
                 throwable.printStackTrace();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            DaggerApplication.getApp(this).getComponentsHolder().releaseActivityComponent(this);
+        }
     }
 }
