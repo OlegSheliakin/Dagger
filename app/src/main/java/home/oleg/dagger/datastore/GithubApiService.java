@@ -1,4 +1,4 @@
-package home.oleg.dagger;
+package home.oleg.dagger.datastore;
 
 import java.util.List;
 

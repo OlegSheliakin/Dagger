@@ -1,4 +1,4 @@
-package home.oleg.dagger;
+package home.oleg.dagger.datastore;
 
 /**
  * Created by Oleg on 01.05.2017.

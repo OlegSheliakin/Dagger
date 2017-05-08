@@ -5,8 +5,8 @@ import java.util.concurrent.Callable;
 import dagger.Lazy;
 import dagger.Module;
 import dagger.Provides;
-import home.oleg.dagger.HeavyExternalLibrary;
-import home.oleg.dagger.di.modules.ApplictaionModule;
+import home.oleg.dagger.datastore.HeavyExternalLibrary;
+import home.oleg.dagger.di.ActivityModule;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -14,8 +14,8 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Oleg on 01.05.2017.
  */
-@Module(includes = ApplictaionModule.class)
-public class DetailModule {
+@Module
+public class DetailModule implements ActivityModule {
 
     @Provides
     public HeavyExternalLibrary provideHeavyLibrary() {

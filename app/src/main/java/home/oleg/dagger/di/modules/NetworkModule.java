@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 import dagger.Module;
 import dagger.Provides;
 import home.oleg.dagger.BuildConfig;
-import home.oleg.dagger.GithubApiService;
+import home.oleg.dagger.datastore.GithubApiService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

@@ -1,13 +1,18 @@
 package home.oleg.dagger.di.modules;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 
 import java.util.List;
 import java.util.Set;
 
 import dagger.Module;
 import dagger.Provides;
-import home.oleg.dagger.Action;
+import home.oleg.dagger.datastore.Action;
+import home.oleg.dagger.R;
+import home.oleg.dagger.di.ActivityModule;
 import home.oleg.dagger.di.scopes.PerActivity;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.interactor.MainUseCase;
@@ -24,7 +29,14 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 @Module(includes = ActionModule.class)
-public class MainActivityModule {
+public class MainActivityModule implements ActivityModule {
+
+    @NonNull
+    @Provides
+    @PerActivity
+    public Drawable provideAppIcon(Context context) {
+        return ContextCompat.getDrawable(context, R.mipmap.ic_launcher);
+    }
 
     @NonNull
     @Provides

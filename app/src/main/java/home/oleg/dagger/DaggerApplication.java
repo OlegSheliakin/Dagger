@@ -1,11 +1,11 @@
 package home.oleg.dagger;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
 
-import home.oleg.dagger.di.components.ApplicationComponent;
-import home.oleg.dagger.di.components.DaggerApplicationComponent;
+import home.oleg.dagger.di.ComponentsHolder;
 
 /**
  * Created by Oleg on 22.04.2017.
@@ -13,7 +13,7 @@ import home.oleg.dagger.di.components.DaggerApplicationComponent;
 
 public class DaggerApplication extends Application {
 
-    private static ApplicationComponent component;
+    private ComponentsHolder componentsHolder;
 
     @Override
     public void onCreate() {
@@ -21,12 +21,16 @@ public class DaggerApplication extends Application {
         if (BuildConfig.DEBUG) {
             AndroidDevMetrics.initWith(this);
         }
-
-        component = DaggerApplicationComponent.create();
+        componentsHolder = new ComponentsHolder(this);
+        componentsHolder.init();
     }
 
-    public static ApplicationComponent getComponent() {
-        return component;
+    public static DaggerApplication getApp(Context context) {
+        return (DaggerApplication)context.getApplicationContext();
+    }
+
+    public ComponentsHolder getComponentsHolder() {
+        return componentsHolder;
     }
 
 }

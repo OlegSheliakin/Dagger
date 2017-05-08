@@ -10,7 +10,7 @@ import java.util.List;
 import dagger.Module;
 import dagger.Provides;
 import dagger.multibindings.IntoSet;
-import home.oleg.dagger.Action;
+import home.oleg.dagger.datastore.Action;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.repo.Repository;
 

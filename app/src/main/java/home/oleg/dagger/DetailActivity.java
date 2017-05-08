@@ -5,7 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
-import home.oleg.dagger.di.components.DaggerDetailComponent;
+import home.oleg.dagger.datastore.HeavyExternalLibrary;
+import home.oleg.dagger.di.components.DetailComponent;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
@@ -18,7 +19,12 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        DaggerDetailComponent.builder().build().inject(this);
+
+        ((DetailComponent) DaggerApplication.getApp(this)
+                .getComponentsHolder()
+                .getActivityComponent(getClass()))
+                .inject(this);
+
         heavyExternalLibrarySingle.subscribe(new Consumer<HeavyExternalLibrary>() {
             @Override
             public void accept(@NonNull HeavyExternalLibrary heavyExternalLibrary) throws Exception {
