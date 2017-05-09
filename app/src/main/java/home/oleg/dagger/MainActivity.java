@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,10 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.AndroidInjection;
-import dagger.android.DaggerActivity;
-import home.oleg.dagger.di.ActivityComponent;
 import home.oleg.dagger.di.BindableActivity;
-import home.oleg.dagger.di.components.MainActivityComponent;
 import home.oleg.dagger.presenter.Presenter;
 import home.oleg.dagger.view.MainView;
 import home.oleg.dagger.view_model.ItemViewModel;
@@ -30,9 +28,11 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        presenter.fetchItems();
     }
 
     @Override
@@ -44,13 +44,11 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
 
     @Inject
     public void onPresenterReady() {
-     //   presenter.attachView(this);
-     //   presenter.fetchItems();
+        presenter.attachView(this);
     }
 
     @OnClick(value = R.id.button)
-    void goToDetail(){
-        System.out.println("button tapped");
+    void goToDetail() {
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         startActivity(intent);
     }

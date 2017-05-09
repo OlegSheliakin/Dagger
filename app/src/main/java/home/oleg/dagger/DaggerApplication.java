@@ -21,7 +21,7 @@ public class DaggerApplication extends Application implements HasDispatchingActi
     public void onCreate() {
         super.onCreate();
         DaggerApplicationComponent.builder()
-                .bindContext(this)
+            //    .bindContext(this)
                 .build()
                 .inject(this);
     }

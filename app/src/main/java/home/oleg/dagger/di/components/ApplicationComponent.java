@@ -1,6 +1,7 @@
 package home.oleg.dagger.di.components;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import javax.inject.Singleton;
 
@@ -22,7 +23,7 @@ public interface ApplicationComponent {
     interface AppComponentBuilder {
         ApplicationComponent build();
 
-        @BindsInstance
+        @BindsInstance @Nullable
         AppComponentBuilder bindContext(Context context);
     }
 }
