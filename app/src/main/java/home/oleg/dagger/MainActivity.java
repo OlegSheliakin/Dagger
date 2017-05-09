@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         ((MainActivityComponent) DaggerApplication.getApp(this)
                 .getComponentsHolder()
                 .getActivityComponent(getClass()))
@@ -61,4 +62,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
         startActivity(intent);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isFinishing()) {
+            DaggerApplication.getApp(this)
+                    .getComponentsHolder().releaseActivityComponent(getClass());
+        }
+    }
 }
