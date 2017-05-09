@@ -1,36 +1,33 @@
 package home.oleg.dagger;
 
+import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
 
-import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
+import javax.inject.Inject;
 
-import home.oleg.dagger.di.ComponentsHolder;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasDispatchingActivityInjector;
+import home.oleg.dagger.di.components.DaggerApplicationComponent;
 
 /**
  * Created by Oleg on 22.04.2017.
  */
 
-public class DaggerApplication extends Application {
+public class DaggerApplication extends Application implements HasDispatchingActivityInjector {
 
-    private ComponentsHolder componentsHolder;
+    @Inject DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        if (BuildConfig.DEBUG) {
-            AndroidDevMetrics.initWith(this);
-        }
-        componentsHolder = new ComponentsHolder(this);
-        componentsHolder.init();
+        DaggerApplicationComponent.builder()
+                .bindContext(this)
+                .build()
+                .inject(this);
     }
 
-    public static DaggerApplication getApp(Context context) {
-        return (DaggerApplication)context.getApplicationContext();
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
-
-    public ComponentsHolder getComponentsHolder() {
-        return componentsHolder;
-    }
-
 }

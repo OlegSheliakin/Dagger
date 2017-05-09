@@ -3,12 +3,11 @@ package home.oleg.dagger.di.modules;
 import android.support.annotation.NonNull;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 import dagger.multibindings.IntoMap;
 import home.oleg.dagger.datastore.CachedStore;
 import home.oleg.dagger.datastore.CloudStore;
@@ -27,36 +26,28 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 @Module
-public class StorageModule {
+public interface StorageModule {
 
     @NonNull
-    @Provides
+    @Binds
     @Singleton
-    public Repository<Item> provideRepository(Map<StoreType, Store<List<Item>>> stores) {
-        return new ItemRepository(stores);
-    }
+    Repository<Item> provideRepository(ItemRepository itemRepository);
 
     @NonNull
-    @Provides
+    @Binds
     @Singleton
-    public Mapper<Item, ItemViewModel> provideMapper() {
-        return new ItemMapper();
-    }
+    Mapper<Item, ItemViewModel> provideMapper(ItemMapper mapper);
 
     @NonNull
-    @Provides
+    @Binds
     @IntoMap
     @StoreKey(StoreType.CACHED)
-    public Store<List<Item>> provideCachedStore(){
-        return new CachedStore();
-    }
+    Store<List<Item>> provideCachedStore(CachedStore cachedStore);
 
     @NonNull
-    @Provides
+    @Binds
     @IntoMap
     @StoreKey(StoreType.CLOUD)
-    public Store<List<Item>> provideCloudStore(){
-        return new CloudStore();
-    }
+    Store<List<Item>> provideCloudStore(CloudStore cloudStore);
 
 }

@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import java.util.List;
 import java.util.Set;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import home.oleg.dagger.datastore.Action;
@@ -29,29 +30,24 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 @Module(includes = ActionModule.class)
-public class MainActivityModule implements BindableActivity {
+public abstract class MainActivityModule {
 
     @NonNull
     @Provides
     @PerActivity
-    public Drawable provideAppIcon(Context context) {
+    public static Drawable provideAppIcon(Context context) {
         return ContextCompat.getDrawable(context, R.mipmap.ic_launcher);
     }
 
     @NonNull
-    @Provides
+    @Binds
     @PerActivity
-    public Presenter<MainView> providePresenter(UseCase<List<ItemViewModel>> useCase) {
-        return new MainPresenter(useCase);
-    }
+    public abstract Presenter<MainView> providePresenter(MainPresenter presenter);
 
     @NonNull
-    @Provides
+    @Binds
     @PerActivity
-    public UseCase<List<ItemViewModel>> provideUseCase(Repository<Item> repository, Mapper<Item,
-            ItemViewModel> mapper, Set<Action<List<Item>>> actions) {
-        return new MainUseCase(repository, mapper, actions);
-    }
+    public abstract UseCase<List<ItemViewModel>> provideUseCase(MainUseCase useCase);
 
 }
 

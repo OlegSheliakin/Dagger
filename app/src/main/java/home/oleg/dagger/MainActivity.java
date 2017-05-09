@@ -12,6 +12,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dagger.android.AndroidInjection;
+import dagger.android.DaggerActivity;
 import home.oleg.dagger.di.ActivityComponent;
 import home.oleg.dagger.di.BindableActivity;
 import home.oleg.dagger.di.components.MainActivityComponent;
@@ -31,10 +33,6 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        DaggerApplication.getApp(this).getComponentsHolder()
-                .getActivityComponent(this, MainActivityComponent.class).inject(this);
-        System.out.println(DaggerApplication.getApp(this).getComponentsHolder().getAll().toString());
     }
 
     @Override
@@ -46,21 +44,15 @@ public class MainActivity extends AppCompatActivity implements MainView, Bindabl
 
     @Inject
     public void onPresenterReady() {
-        presenter.attachView(this);
-        presenter.fetchItems();
+     //   presenter.attachView(this);
+     //   presenter.fetchItems();
     }
 
     @OnClick(value = R.id.button)
     void goToDetail(){
+        System.out.println("button tapped");
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         startActivity(intent);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (isFinishing()) {
-            DaggerApplication.getApp(this).getComponentsHolder().releaseActivityComponent(this);
-        }
-    }
 }

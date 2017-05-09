@@ -23,7 +23,7 @@ public class ActionModule {
     @NonNull
     @Provides
     @IntoSet
-    public Action<List<Item>> provideSortAction() {
+    public static Action<List<Item>> provideSortAction() {
         return new Action<List<Item>>() {
             @Override
             public void perform(List<Item> items) {
@@ -40,7 +40,7 @@ public class ActionModule {
     @NonNull
     @Provides
     @IntoSet
-    public Action<List<Item>> provideLogAction() {
+    public static Action<List<Item>> provideLogAction() {
         return new Action<List<Item>>() {
             @Override
             public void perform(List<Item> items) {
@@ -52,7 +52,7 @@ public class ActionModule {
     @NonNull
     @Provides
     @IntoSet
-    public Action<List<Item>> provideFillAction(final Repository<Item> repository) {
+    public static Action<List<Item>> provideFillAction(final Repository<Item> repository) {
         return new Action<List<Item>>() {
             @Override
             public void perform(List<Item> items) {

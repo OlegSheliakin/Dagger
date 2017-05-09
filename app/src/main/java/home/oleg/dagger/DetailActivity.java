@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
 import home.oleg.dagger.datastore.HeavyExternalLibrary;
 import home.oleg.dagger.di.BindableActivity;
 import home.oleg.dagger.di.components.DetailComponent;
@@ -18,13 +19,9 @@ public class DetailActivity extends AppCompatActivity implements BindableActivit
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
-        DaggerApplication.getApp(this)
-                .getComponentsHolder()
-                .getActivityComponent(this, DetailComponent.class).inject(this);
-        System.out.println(DaggerApplication.getApp(this).getComponentsHolder().getAll().toString());
 
         heavyExternalLibrarySingle.subscribe(new Consumer<HeavyExternalLibrary>() {
             @Override
@@ -39,11 +36,11 @@ public class DetailActivity extends AppCompatActivity implements BindableActivit
         });
     }
 
-    @Override
+ /*   @Override
     protected void onDestroy() {
         super.onDestroy();
         if (isFinishing()) {
             DaggerApplication.getApp(this).getComponentsHolder().releaseActivityComponent(this);
         }
-    }
+    }*/
 }

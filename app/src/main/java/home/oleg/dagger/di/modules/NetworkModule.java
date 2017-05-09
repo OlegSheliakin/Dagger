@@ -17,10 +17,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 @Module
-public class NetworkModule {
+public abstract class NetworkModule {
 
     @Provides
-    OkHttpClient produceOkHttpClient() {
+    public static OkHttpClient produceOkHttpClient() {
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -35,7 +35,7 @@ public class NetworkModule {
     }
 
     @Provides
-    public Retrofit produceRestAdapter(OkHttpClient okHttpClient) {
+    public static Retrofit produceRestAdapter(OkHttpClient okHttpClient) {
         Retrofit.Builder builder = new Retrofit.Builder();
         builder.client(okHttpClient)
                 .baseUrl("https://api.github.com")
@@ -45,7 +45,7 @@ public class NetworkModule {
     }
 
     @Provides
-    public GithubApiService produceGithubApiService(Retrofit restAdapter) {
+    public static GithubApiService produceGithubApiService(Retrofit restAdapter) {
         return restAdapter.create(GithubApiService.class);
     }
 

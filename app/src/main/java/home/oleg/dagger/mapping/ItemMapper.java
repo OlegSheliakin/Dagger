@@ -1,5 +1,7 @@
 package home.oleg.dagger.mapping;
 
+import javax.inject.Inject;
+
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.view_model.ItemViewModel;
 
@@ -8,6 +10,9 @@ import home.oleg.dagger.view_model.ItemViewModel;
  */
 
 public class ItemMapper implements Mapper<Item, ItemViewModel> {
+
+    @Inject
+    public ItemMapper() {}
 
     @Override
     public ItemViewModel map(Item item) {

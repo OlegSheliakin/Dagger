@@ -1,7 +1,12 @@
 package home.oleg.dagger.di.modules;
 
+import android.app.Activity;
+
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
+import dagger.android.ActivityKey;
+import dagger.android.AndroidInjector;
 import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 import home.oleg.dagger.DetailActivity;
@@ -21,12 +26,12 @@ public interface ApplicationModule {
 
     @Binds
     @IntoMap
-    @ClassKey(MainActivity.class)
-    ActivityComponentBuilder provideMainActivityBuilder(MainActivityComponent.Builder builder);
+    @ActivityKey(MainActivity.class)
+    AndroidInjector.Factory<? extends Activity> provideMainActivityBuilder(MainActivityComponent.Builder builder);
 
     @Binds
     @IntoMap
-    @ClassKey(DetailActivity.class)
-    ActivityComponentBuilder provideDetailActivityBuilder(DetailComponent.Builder builder);
+    @ActivityKey(DetailActivity.class)
+    AndroidInjector.Factory<? extends Activity> provideDetailActivityBuilder(DetailComponent.Builder builder);
 
 }

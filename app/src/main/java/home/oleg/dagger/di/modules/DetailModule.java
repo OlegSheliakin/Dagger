@@ -18,12 +18,12 @@ import io.reactivex.schedulers.Schedulers;
 public class DetailModule implements BindableActivity {
 
     @Provides
-    public HeavyExternalLibrary provideHeavyLibrary() {
+    public static HeavyExternalLibrary provideHeavyLibrary() {
         return new HeavyExternalLibrary();
     }
 
     @Provides
-    public Single<HeavyExternalLibrary> produceName(final Lazy<HeavyExternalLibrary> heavyExternalLibraryLazy) {
+    public static Single<HeavyExternalLibrary> produceName(final Lazy<HeavyExternalLibrary> heavyExternalLibraryLazy) {
         return Single.fromCallable(new Callable<HeavyExternalLibrary>() {
             @Override
             public HeavyExternalLibrary call() throws Exception {

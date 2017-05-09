@@ -7,7 +7,6 @@ import javax.inject.Singleton;
 import dagger.BindsInstance;
 import dagger.Component;
 import home.oleg.dagger.DaggerApplication;
-import home.oleg.dagger.di.ComponentsHolder;
 import home.oleg.dagger.di.modules.ApplicationModule;
 import home.oleg.dagger.di.modules.StorageModule;
 
@@ -17,7 +16,7 @@ import home.oleg.dagger.di.modules.StorageModule;
 @Singleton
 @Component(modules = {ApplicationModule.class, StorageModule.class})
 public interface ApplicationComponent {
-    void inject(ComponentsHolder componentsHolder);
+    void inject(DaggerApplication application);
 
     @Component.Builder
     interface AppComponentBuilder {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
 import home.oleg.dagger.datastore.Store;
 import home.oleg.dagger.datastore.StoreType;
 import home.oleg.dagger.entity.Item;
@@ -16,6 +18,7 @@ public class ItemRepository implements Repository<Item> {
 
     private final Map<StoreType, Store<List<Item>>> stores;
 
+    @Inject
     public ItemRepository(Map<StoreType, Store<List<Item>>> stores) {
         this.stores = stores;
     }

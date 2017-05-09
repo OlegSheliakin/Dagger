@@ -1,11 +1,9 @@
 package home.oleg.dagger.di.components;
 
-import dagger.Component;
 import dagger.Subcomponent;
+import dagger.android.AndroidInjector;
 import home.oleg.dagger.DetailActivity;
-import home.oleg.dagger.di.ActivityComponent;
 import home.oleg.dagger.di.ActivityComponentBuilder;
-import home.oleg.dagger.di.modules.ApplicationModule;
 import home.oleg.dagger.di.modules.DetailModule;
 import home.oleg.dagger.di.scopes.PerActivity;
 
@@ -14,9 +12,9 @@ import home.oleg.dagger.di.scopes.PerActivity;
  */
 @PerActivity
 @Subcomponent(modules = DetailModule.class)
-public interface DetailComponent extends ActivityComponent<DetailActivity>{
+public interface DetailComponent extends AndroidInjector<DetailActivity> {
 
     @Subcomponent.Builder
-    interface Builder extends ActivityComponentBuilder<DetailComponent>{
+    abstract class Builder extends AndroidInjector.Builder<DetailActivity> {
     }
 }

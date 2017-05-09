@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 import home.oleg.dagger.datastore.Action;
+import home.oleg.dagger.di.scopes.PerActivity;
 import home.oleg.dagger.entity.Item;
 import home.oleg.dagger.mapping.Mapper;
 import home.oleg.dagger.repo.Repository;
@@ -13,13 +16,14 @@ import home.oleg.dagger.view_model.ItemViewModel;
 /**
  * Created by Oleg on 22.04.2017.
  */
-
+@PerActivity
 public class MainUseCase implements UseCase<List<ItemViewModel>>{
 
     private final Repository<Item> repository;
     private final Mapper<Item, ItemViewModel> mapper;
     private final Set<Action<List<Item>>> actions;
 
+    @Inject
     public MainUseCase(Repository<Item> repository,
                        Mapper<Item, ItemViewModel> mapper,
                        Set<Action<List<Item>>> actions){

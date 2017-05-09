@@ -3,6 +3,8 @@ package home.oleg.dagger.datastore;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import home.oleg.dagger.entity.Item;
 
 /**
@@ -10,6 +12,10 @@ import home.oleg.dagger.entity.Item;
  */
 
 public class CloudStore implements Store<List<Item>> {
+
+    @Inject
+    public CloudStore() {
+    }
 
     @Override
     public List<Item> get() {
