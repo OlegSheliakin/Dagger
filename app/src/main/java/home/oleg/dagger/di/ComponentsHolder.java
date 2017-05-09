@@ -58,8 +58,7 @@ public class ComponentsHolder {
     }
 
     public void releaseActivityComponent(Class<?> cls) {
-        components.put(cls, null);
-
+        components.remove(cls);
     }
 
 }

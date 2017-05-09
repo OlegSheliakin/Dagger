@@ -3,8 +3,6 @@ package home.oleg.dagger;
 import android.app.Application;
 import android.content.Context;
 
-import com.frogermcs.androiddevmetrics.AndroidDevMetrics;
-
 import home.oleg.dagger.di.ComponentsHolder;
 
 /**
@@ -18,9 +16,6 @@ public class DaggerApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        if (BuildConfig.DEBUG) {
-            AndroidDevMetrics.initWith(this);
-        }
         componentsHolder = new ComponentsHolder(this);
         componentsHolder.init();
     }
